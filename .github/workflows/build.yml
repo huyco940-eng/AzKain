@@ -1,0 +1,16 @@
+name: Build-AzKain-EXE
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: |
+          g++ imgui*.cpp -c
+          g++ *.o -shared -o AzKain_Panel.exe
+      - name: Save-File
+        uses: actions/upload-artifact@v3
+        with:
+          name: AzKain-EXE-Cua-Anh-Trai
+          path: AzKain_Panel.exe
